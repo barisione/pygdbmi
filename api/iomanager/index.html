@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
     
     
       
@@ -19,11 +19,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -347,13 +348,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#pygdbmi.IoManager.make_non_blocking" class="md-nav__link">
-    make_non_blocking()
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -449,13 +443,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#pygdbmi.IoManager.make_non_blocking" class="md-nav__link">
-    make_non_blocking()
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -478,14 +465,15 @@
 
 <div class="doc doc-object doc-module">
 
-<a id="pygdbmi.IoManager"></a>
-    <div class="doc doc-contents first">
 
+<a id="pygdbmi.IoManager"></a>
+  <div class="doc doc-contents first">
+  
       <p>This module defines the <code>IoManager</code> class
 which manages I/O for file objects connected to an existing gdb process
 or pty.</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -496,31 +484,285 @@ or pty.</p>
 
 
 
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 class="doc doc-heading" id="pygdbmi.IoManager.IoManager">
-        <code>
-IoManager        </code>
-
+        <code>IoManager</code>
 
 
 </h2>
 
-    <div class="doc doc-contents ">
+
+  <div class="doc doc-contents ">
+
 
 
         <details class="quote">
           <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">IoManager</span><span class="p">:</span>
+          <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">IoManager</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stdin</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedWriter</span><span class="p">,</span>
-        <span class="n">stdout</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">,</span>
-        <span class="n">stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">],</span>
-        <span class="n">time_to_check_for_additional_output_sec</span><span class="o">=</span><span class="n">DEFAULT_TIME_TO_CHECK_FOR_ADDITIONAL_OUTPUT_SEC</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">stdin</span><span class="p">:</span> <span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+        <span class="n">stdout</span><span class="p">:</span> <span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+        <span class="n">stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]],</span>
+        <span class="n">time_to_check_for_additional_output_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIME_TO_CHECK_FOR_ADDITIONAL_OUTPUT_SEC</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Manage I/O for file objects created before calling this class</span>
 <span class="sd">        This can be useful if the gdb process is managed elsewhere, or if a</span>
@@ -547,13 +789,15 @@ IoManager        </code>
         <span class="bp">self</span><span class="o">.</span><span class="n">_allow_overwrite_timeout_times</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">time_to_check_for_additional_output_sec</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="p">)</span>
-        <span class="n">make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="n">_make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">_make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_gdb_response</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
+        <span class="n">raise_error_on_timeout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get response from GDB, and block while doing so. If GDB does not have any response ready to be read</span>
 <span class="sd">        by timeout_sec, an exception is raised.</span>
 
@@ -587,7 +831,7 @@ IoManager        </code>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">retval</span>
 
-    <span class="k">def</span> <span class="nf">_get_responses_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_responses_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get responses on windows. Assume no support for select and use a while loop.&quot;&quot;&quot;</span>
         <span class="n">timeout_time_sec</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">timeout_sec</span>
         <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -597,15 +841,16 @@ IoManager        </code>
                 <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
                 <span class="n">raw_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">responses_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_responses_list</span><span class="p">(</span><span class="n">raw_output</span><span class="p">,</span> <span class="s2">&quot;stdout&quot;</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
                 <span class="k">pass</span>
 
-            <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-                <span class="n">raw_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">responses_list</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_responses_list</span><span class="p">(</span><span class="n">raw_output</span><span class="p">,</span> <span class="s2">&quot;stderr&quot;</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-                <span class="k">pass</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+                    <span class="n">raw_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">responses_list</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_responses_list</span><span class="p">(</span><span class="n">raw_output</span><span class="p">,</span> <span class="s2">&quot;stderr&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                    <span class="k">pass</span>
 
             <span class="n">responses</span> <span class="o">+=</span> <span class="n">responses_list</span>
             <span class="k">if</span> <span class="n">timeout_sec</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -620,7 +865,7 @@ IoManager        </code>
 
         <span class="k">return</span> <span class="n">responses</span>
 
-    <span class="k">def</span> <span class="nf">_get_responses_unix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_responses_unix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get responses on unix-like system. Use select to wait for output.&quot;&quot;&quot;</span>
         <span class="n">timeout_time_sec</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">timeout_sec</span>
         <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -638,6 +883,7 @@ IoManager        </code>
                     <span class="n">stream</span> <span class="o">=</span> <span class="s2">&quot;stdout&quot;</span>
 
                 <span class="k">elif</span> <span class="n">fileno</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr_fileno</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
                     <span class="n">raw_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                     <span class="n">stream</span> <span class="o">=</span> <span class="s2">&quot;stderr&quot;</span>
@@ -702,10 +948,10 @@ IoManager        </code>
     <span class="k">def</span> <span class="nf">write</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mi_cmd_to_write</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-        <span class="n">timeout_sec</span><span class="o">=</span><span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
+        <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
         <span class="n">raise_error_on_timeout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">read_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Write to gdb process. Block while parsing responses from gdb for a maximum of timeout_sec.</span>
 
 <span class="sd">        Args:</span>
@@ -764,10 +1010,10 @@ IoManager        </code>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
         </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -779,34 +1025,66 @@ IoManager        </code>
 
 
 
-  <div class="doc doc-object doc-method">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 class="doc doc-heading" id="pygdbmi.IoManager.IoManager.__init__">
-<code class="codehilite language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">,</span> <span class="n">time_to_check_for_additional_output_sec</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-special"><code>special</code></small>
-  </span>
+<code class="codehilite language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">,</span> <span class="n">time_to_check_for_additional_output_sec</span><span class="o">=</span><span class="n">DEFAULT_TIME_TO_CHECK_FOR_ADDITIONAL_OUTPUT_SEC</span><span class="p">)</span></code>
 
 </h3>
 
-    <div class="doc doc-contents ">
 
+  <div class="doc doc-contents ">
+  
       <p>Manage I/O for file objects created before calling this class
 This can be useful if the gdb process is managed elsewhere, or if a
 pty is used.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+      <details class="quote">
+        <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
+        <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">stdin</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedWriter</span><span class="p">,</span>
-    <span class="n">stdout</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">,</span>
-    <span class="n">stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">],</span>
-    <span class="n">time_to_check_for_additional_output_sec</span><span class="o">=</span><span class="n">DEFAULT_TIME_TO_CHECK_FOR_ADDITIONAL_OUTPUT_SEC</span><span class="p">,</span>
-<span class="p">):</span>
+    <span class="n">stdin</span><span class="p">:</span> <span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+    <span class="n">stdout</span><span class="p">:</span> <span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+    <span class="n">stderr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IO</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]],</span>
+    <span class="n">time_to_check_for_additional_output_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIME_TO_CHECK_FOR_ADDITIONAL_OUTPUT_SEC</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Manage I/O for file objects created before calling this class</span>
 <span class="sd">    This can be useful if the gdb process is managed elsewhere, or if a</span>
@@ -833,97 +1111,155 @@ pty is used.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">_allow_overwrite_timeout_times</span> <span class="o">=</span> <span class="p">(</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_to_check_for_additional_output_sec</span> <span class="o">&gt;</span> <span class="mi">0</span>
     <span class="p">)</span>
-    <span class="n">make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="n">_make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-        <span class="n">make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-</code></pre></div>
-        </details>
-    </div>
-
+        <span class="n">_make_non_blocking</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-method">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 class="doc doc-heading" id="pygdbmi.IoManager.IoManager.get_gdb_response">
-<code class="codehilite language-python"><span class="n">get_gdb_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-
+<code class="codehilite language-python"><span class="n">get_gdb_response</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 </h3>
 
-    <div class="doc doc-contents ">
 
+  <div class="doc doc-contents ">
+  
       <p>Get response from GDB, and block while doing so. If GDB does not have any response ready to be read
 by timeout_sec, an exception is raised.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>timeout_sec</code></td>
-        <td><code>float</code></td>
-        <td><p>Maximum time to wait for reponse. Must be &gt;= 0. Will return after</p></td>
-        <td><code>1</code></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>timeout_sec</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>Maximum time to wait for reponse. Must be &gt;= 0. Will return after</p></td>
+          <td>
+                <code>DEFAULT_GDB_TIMEOUT_SEC</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>raise_error_on_timeout</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Whether an exception should be raised if no response was found after timeout_sec</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>raise_error_on_timeout</code></td>
-        <td></td>
-        <td><p>Whether an exception should be raised if no response was found after timeout_sec</p></td>
-        <td><code>True</code></td>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td><p>List of parsed GDB responses, returned from gdbmiparser.parse_response, with the
-additional key 'stream' which is either 'stdout' or 'stderr'</p></td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Exceptions:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>]</code>
+          </td>
+          <td><p>List of parsed GDB responses, returned from gdbmiparser.parse_response, with the</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>]</code>
+          </td>
+          <td><p>additional key 'stream' which is either 'stdout' or 'stderr'</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>GdbTimeoutError</code></td>
-        <td><p>if response is not received within timeout_sec</p></td>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
-      <tr>
-        <td><code>ValueError</code></td>
-        <td><p>if select returned unexpected file number</p></td>
-      </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_gdb_response</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">):</span>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pygdbmi.constants.GdbTimeoutError">GdbTimeoutError</span></code>
+          </td>
+          <td><p>if response is not received within timeout_sec</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if select returned unexpected file number</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
+        <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_gdb_response</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
+    <span class="n">raise_error_on_timeout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Get response from GDB, and block while doing so. If GDB does not have any response ready to be read</span>
 <span class="sd">    by timeout_sec, an exception is raised.</span>
 
@@ -956,104 +1292,189 @@ additional key 'stream' which is either 'stdout' or 'stderr'</p></td>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">retval</span>
-</code></pre></div>
-        </details>
-    </div>
-
+</code></pre></div></td></tr></table></div>
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-method">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 class="doc doc-heading" id="pygdbmi.IoManager.IoManager.write">
-<code class="codehilite language-python"><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mi_cmd_to_write</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">read_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-
+<code class="codehilite language-python"><span class="n">write</span><span class="p">(</span><span class="n">mi_cmd_to_write</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="o">=</span><span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span> <span class="n">raise_error_on_timeout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">read_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 </h3>
 
-    <div class="doc doc-contents ">
 
+  <div class="doc doc-contents ">
+  
       <p>Write to gdb process. Block while parsing responses from gdb for a maximum of timeout_sec.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>mi_cmd_to_write</code></td>
-        <td><code>Union[str, List[str]]</code></td>
-        <td><p>String to write to gdb. If list, it is joined by newlines.</p></td>
-        <td><em>required</em></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>mi_cmd_to_write</code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td><p>String to write to gdb. If list, it is joined by newlines.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>timeout_sec</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td><p>Maximum number of seconds to wait for response before exiting. Must be &gt;= 0.</p></td>
+          <td>
+                <code>DEFAULT_GDB_TIMEOUT_SEC</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>raise_error_on_timeout</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If read_response is True, raise error if no response is received</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>read_response</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Block and read response. If there is a separate thread running, this can be false, and the reading thread read the output.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>timeout_sec</code></td>
-        <td></td>
-        <td><p>Maximum number of seconds to wait for response before exiting. Must be &gt;= 0.</p></td>
-        <td><code>1</code></td>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>]</code>
+          </td>
+          <td><p>List of parsed gdb responses if read_response is True, otherwise []</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>raise_error_on_timeout</code></td>
-        <td><code>bool</code></td>
-        <td><p>If read_response is True, raise error if no response is received</p></td>
-        <td><code>True</code></td>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
-      <tr>
-        <td><code>read_response</code></td>
-        <td><code>bool</code></td>
-        <td><p>Block and read response. If there is a separate thread running, this can be false, and the reading thread read the output.</p></td>
-        <td><code>True</code></td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td><p>List of parsed gdb responses if read_response is True, otherwise []</p></td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Exceptions:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>TypeError</code></td>
-        <td><p>if mi_cmd_to_write is not valid</p></td>
-      </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">write</span><span class="p">(</span>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>TypeError</code>
+          </td>
+          <td><p>if mi_cmd_to_write is not valid</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
+        <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">mi_cmd_to_write</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-    <span class="n">timeout_sec</span><span class="o">=</span><span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
+    <span class="n">timeout_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_GDB_TIMEOUT_SEC</span><span class="p">,</span>
     <span class="n">raise_error_on_timeout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">read_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Write to gdb process. Block while parsing responses from gdb for a maximum of timeout_sec.</span>
 
 <span class="sd">    Args:</span>
@@ -1112,88 +1533,32 @@ additional key 'stream' which is either 'stdout' or 'stderr'</p></td>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
-</code></pre></div>
-        </details>
-    </div>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
 
   </div>
 
-
-
-
-
   </div>
 
-    </div>
-
-  </div>
-
-
-
-
-  <div class="doc doc-object doc-function">
-
-
-
-<h2 class="doc doc-heading" id="pygdbmi.IoManager.make_non_blocking">
-<code class="codehilite language-python"><span class="n">make_non_blocking</span><span class="p">(</span><span class="n">file_obj</span><span class="p">)</span></code>
-
-
-</h2>
-
-    <div class="doc doc-contents ">
-
-      <p>make file object non-blocking
-Windows doesn't have the fcntl module, but someone on
-stack overflow supplied this code as an answer, and it works
-http://stackoverflow.com/a/34504971/2893090</p>
-
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/IoManager.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_non_blocking</span><span class="p">(</span><span class="n">file_obj</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">IOBase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;make file object non-blocking</span>
-<span class="sd">    Windows doesn&#39;t have the fcntl module, but someone on</span>
-<span class="sd">    stack overflow supplied this code as an answer, and it works</span>
-<span class="sd">    http://stackoverflow.com/a/34504971/2893090&quot;&quot;&quot;</span>
-
-    <span class="k">if</span> <span class="n">USING_WINDOWS</span><span class="p">:</span>
-        <span class="n">LPDWORD</span> <span class="o">=</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">DWORD</span><span class="p">)</span>
-        <span class="n">PIPE_NOWAIT</span> <span class="o">=</span> <span class="n">wintypes</span><span class="o">.</span><span class="n">DWORD</span><span class="p">(</span><span class="mh">0x00000001</span><span class="p">)</span>
-
-        <span class="n">SetNamedPipeHandleState</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">SetNamedPipeHandleState</span>
-        <span class="n">SetNamedPipeHandleState</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">HANDLE</span><span class="p">,</span> <span class="n">LPDWORD</span><span class="p">,</span> <span class="n">LPDWORD</span><span class="p">,</span> <span class="n">LPDWORD</span><span class="p">]</span>
-        <span class="n">SetNamedPipeHandleState</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
-
-        <span class="n">h</span> <span class="o">=</span> <span class="n">msvcrt</span><span class="o">.</span><span class="n">get_osfhandle</span><span class="p">(</span><span class="n">file_obj</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>  <span class="c1"># type: ignore</span>
-
-        <span class="n">res</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">SetNamedPipeHandleState</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">byref</span><span class="p">(</span><span class="n">PIPE_NOWAIT</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">res</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">WinError</span><span class="p">())</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Set the file status flag (F_SETFL) on the pipes to be non-blocking</span>
-        <span class="c1"># so we can attempt to read from a pipe with no new data without locking</span>
-        <span class="c1"># the program up</span>
-        <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="n">file_obj</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">F_SETFL</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">O_NONBLOCK</span><span class="p">)</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
+</div>
 
 
 
 
   </div>
 
-    </div>
-
   </div>
+
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
@@ -1201,7 +1566,8 @@ http://stackoverflow.com/a/34504971/2893090</p>
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../gdbcontroller/" class="md-footer__link md-footer__link--prev" aria-label="Previous: gdbcontroller" rel="prev">
@@ -1256,10 +1622,10 @@ http://stackoverflow.com/a/34504971/2893090</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
       
     
   </body>

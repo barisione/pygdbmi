@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
     
     
       
@@ -19,11 +19,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e411adfe.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -331,6 +332,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#01100" class="md-nav__link">
+    0.11.0.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#01002" class="md-nav__link">
     0.10.0.2
   </a>
@@ -526,6 +534,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#01100" class="md-nav__link">
+    0.11.0.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#01002" class="md-nav__link">
     0.10.0.2
   </a>
@@ -705,6 +720,34 @@
 
 
 <h1 id="pygdbmi-release-history">pygdbmi release history</h1>
+<h2 id="01100">0.11.0.0</h2>
+<p><strong>Breaking changes</strong></p>
+<ul>
+<li>Removed <code>pygdbmi.IoManager.make_non_blocking</code> from the public API; it's unrelated and was not meant to be public</li>
+</ul>
+<p>Other changes</p>
+<ul>
+<li>Fixed a bug where notifications without a payload were not recognized as such</li>
+<li>Invalid octal sequences produced by GDB are left unchanged instead of causing a <code>UnicodeDecodeError</code> (#64)</li>
+<li>Fix a crash on Windows by waiting for the GDB process to exit in <code>GdbController.exit</code></li>
+<li>Added type annotations to the whole public API</li>
+<li>Updated the examples in <code>README.md</code> to use the current API and show the results printed by this version of pygdbmi (#69)</li>
+</ul>
+<p>Internal changes</p>
+<ul>
+<li>Update and freeze dependencies for documentation generation</li>
+<li>Refactored the code to parse MI records to decrease the number of regex matches to perform</li>
+<li>Added <code>__all__</code> to all modules, which means that star imports (like <code>from pygdbmi.gdbmiparser import *</code>) will not pollute the namespace with modules used by pygdbmi itself</li>
+<li>Added <code>nox -s format</code> to re-format the source code using the correct options</li>
+<li>Reformatted all imports with <code>isort</code>, and use it as part of <code>nox -s lint</code> and <code>nox -s format</code></li>
+<li>Converted tests to use pytest's test structure rather than the unittest-based one</li>
+<li>Added mypy configuration to detect more problems and to force all code to be annotated</li>
+<li>Added a test for <code>example.py</code></li>
+<li>Replaced uses of <code>distutils.spawn.find_executable</code>, which is deprecated, with <code>shutil.which</code></li>
+<li>Ran <a href="https://github.com/asottile/pyupgrade"><code>pyupgrade</code></a> (with option <code>--py37-plus</code>) on the codebase to convert to Python 3.7 idioms</li>
+<li>Excluded some common backup and cache files from <code>MANIFEST.in</code> to prevent unwanted files to be included which causes <code>check-manifest</code> to fail</li>
+<li>Fix <code>.flake8</code> to not cause errors with some versions of the <code>flake8</code> tool</li>
+</ul>
 <h2 id="01002">0.10.0.2</h2>
 <ul>
 <li>Strings containing escapes are now unescaped, both for messages in error records, which were previously mangled (#57), and textual records, which were previously left escaped (#58)</li>
@@ -826,6 +869,7 @@
 
               
             </article>
+            
           </div>
         </div>
         
@@ -833,7 +877,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../api/iomanager/" class="md-footer__link md-footer__link--prev" aria-label="Previous: iomanager" rel="prev">
@@ -873,10 +918,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
       
     
   </body>

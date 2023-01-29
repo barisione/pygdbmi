@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
     
     
       
@@ -19,11 +19,12 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e411adfe.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -424,15 +425,16 @@
 
 <div class="doc doc-object doc-module">
 
-<a id="pygdbmi.gdbmiparser"></a>
-    <div class="doc doc-contents first">
 
+<a id="pygdbmi.gdbmiparser"></a>
+  <div class="doc doc-contents first">
+  
       <p>Python parser for gdb's machine interface interpreter.</p>
 <p>Parses string output from gdb with the <code>--interpreter=mi2</code> flag into
 structured objects.</p>
 <p>See more at https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI.html#GDB_002fMI</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -444,60 +446,92 @@ structured objects.</p>
 
 
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h2 class="doc doc-heading" id="pygdbmi.gdbmiparser.parse_response">
 <code class="codehilite language-python"><span class="n">parse_response</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span></code>
 
-
 </h2>
 
-    <div class="doc doc-contents ">
 
+  <div class="doc doc-contents ">
+  
       <p>Parse gdb mi text and turn it into a dictionary.</p>
 <p>See https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI-Stream-Records.html#GDB_002fMI-Stream-Records
 for details on types of gdb mi output.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>gdb_mi_text</code></td>
-        <td><code>str</code></td>
-        <td><p>String output from gdb</p></td>
-        <td><em>required</em></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Dict</code></td>
-      <td><p>dictionary with keys "type", "message", "payload", "token"</p></td>
-    </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/gdbmiparser.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_response</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>gdb_mi_text</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>String output from gdb</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Dict">Dict</span></code>
+          </td>
+          <td><p>dictionary with keys "type", "message", "payload", "token"</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>pygdbmi/gdbmiparser.py</code></summary>
+        <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_response</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse gdb mi text and turn it into a dictionary.</span>
 
 <span class="sd">    See https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI-Stream-Records.html#GDB_002fMI-Stream-Records</span>
@@ -511,118 +545,92 @@ for details on types of gdb mi output.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">stream</span> <span class="o">=</span> <span class="n">StringStream</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">_DEBUG</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">_GDB_MI_NOTIFY_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="n">token</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">_get_notify_msg_and_payload</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;notify&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
-            <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">,</span>
-            <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">token</span><span class="p">,</span>
-        <span class="p">}</span>
+    <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">parser</span> <span class="ow">in</span> <span class="n">_GDB_MI_PATTERNS_AND_PARSERS</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parser</span><span class="p">(</span><span class="n">match</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="n">_GDB_MI_RESULT_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="n">token</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">_get_result_msg_and_payload</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;result&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
-            <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">,</span>
-            <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">token</span><span class="p">,</span>
-        <span class="p">}</span>
-
-    <span class="k">elif</span> <span class="n">_GDB_MI_CONSOLE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">_GDB_MI_CONSOLE_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="n">unescape</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;console&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">,</span>
-        <span class="p">}</span>
-
-    <span class="k">elif</span> <span class="n">_GDB_MI_LOG_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">_GDB_MI_LOG_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="n">unescape</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">}</span>
-
-    <span class="k">elif</span> <span class="n">_GDB_MI_TARGET_OUTPUT_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">_GDB_MI_TARGET_OUTPUT_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="n">unescape</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">payload</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">payload</span><span class="p">}</span>
-
-    <span class="k">elif</span> <span class="n">response_is_finished</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;done&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># This was not gdb mi output, so it must have just been printed by</span>
-        <span class="c1"># the inferior program that&#39;s being debugged</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">gdb_mi_text</span><span class="p">}</span>
-</code></pre></div>
-        </details>
-    </div>
-
+    <span class="c1"># This was not gdb mi output, so it must have just been printed by</span>
+    <span class="c1"># the inferior program that&#39;s being debugged</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">gdb_mi_text</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h2 class="doc doc-heading" id="pygdbmi.gdbmiparser.response_is_finished">
 <code class="codehilite language-python"><span class="n">response_is_finished</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span></code>
 
-
 </h2>
 
-    <div class="doc doc-contents ">
 
+  <div class="doc doc-contents ">
+  
       <p>Return true if the gdb mi response is ending</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>gdb_mi_text</code></td>
-        <td><code>str</code></td>
-        <td><p>String output from gdb</p></td>
-        <td><em>required</em></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>bool</code></td>
-      <td><p>True if gdb response is finished</p></td>
-    </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>pygdbmi/gdbmiparser.py</code></summary>
-          <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">response_is_finished</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>gdb_mi_text</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>String output from gdb</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>True if gdb response is finished</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>pygdbmi/gdbmiparser.py</code></summary>
+        <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">response_is_finished</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Return true if the gdb mi response is ending</span>
 
 <span class="sd">    Args:</span>
@@ -631,30 +639,24 @@ for details on types of gdb mi output.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        True if gdb response is finished</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">_GDB_MI_RESPONSE_FINISHED_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">):</span>
-        <span class="k">return</span> <span class="kc">True</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div>
-        </details>
-    </div>
-
+    <span class="k">return</span> <span class="n">_GDB_MI_RESPONSE_FINISHED_RE</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">gdb_mi_text</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+      </details>
   </div>
 
-
-
+</div>
 
 
 
   </div>
 
-    </div>
-
   </div>
+
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
@@ -662,7 +664,8 @@ for details on types of gdb mi output.</p>
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
@@ -717,10 +720,10 @@ for details on types of gdb mi output.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
       
     
   </body>
